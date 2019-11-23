@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config;
+const dotenv = require("dotenv").config();
 
 class Database {
-  construtor() {
+  constructor() {
     this._connect();
   }
 
