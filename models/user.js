@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt-nodejs");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const userSchema = Schema({
   // TODO: Allergens, calorie count,
   email: { type: String, unique: true, lowercase: true },
   password: String,
   name: String,
-  recipeIds: Object
+  recipeIds: [ObjectId]
 });
 
 userSchema.pre("save", function(next) {
