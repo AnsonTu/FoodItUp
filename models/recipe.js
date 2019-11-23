@@ -13,4 +13,4 @@ const recipeSchema = mongoose.Schema({
   calories: Number
 });
 
-module.exports mongoose.model("recipe", recipeSchema);
+module.exports = mongoose.model("recipe", recipeSchema);
