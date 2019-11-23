@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv").config;
 
 class Database {
   construtor() {
@@ -7,13 +8,10 @@ class Database {
 
   _connect() {
     mongoose
-      .connect(
-        "mongodb+srv://admin:western123@cluster0-a7bum.mongodb.net/test?retryWrites=true&w=majority",
-        {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        }
-      )
+      .connect(process.env.DB_HOST, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      })
       .then(() => {
         console.log("Database connection successful");
       })
