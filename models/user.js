@@ -8,7 +8,13 @@ const userSchema = Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
   name: String,
-  recipeIds: [ObjectId]
+  recipeIds: [ObjectId],
+  inventory: [
+    {
+      ingredentName: String,
+      quantity: Number
+    }
+  ]
 });
 
 userSchema.pre("save", function(next) {
