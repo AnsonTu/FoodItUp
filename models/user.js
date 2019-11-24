@@ -11,7 +11,7 @@ const userSchema = Schema({
   recipeIds: [ObjectId],
   inventory: [
     {
-      ingredentName: String,
+      ingredientName: String,
       quantity: Number
     }
   ]
