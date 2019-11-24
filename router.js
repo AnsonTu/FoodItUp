@@ -1,6 +1,5 @@
 const Authentication = require("./controllers/authentication");
 const passportService = require("./services/passport");
-const UserController = require("./controllers/user");
 const MealController = require("./controllers/meal");
 const UserController = require("./controllers/user");
 const Inventory = require("./controllers/inventory");
