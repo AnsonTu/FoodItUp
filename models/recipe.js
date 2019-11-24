@@ -7,14 +7,14 @@ const recipeSchema = mongoose.Schema(
     prep_time: Number,
     review_count: Number,
     description: String,
-    ingredients: String,
+    ingredients: mongoose.Schema.Types.Mixed,
     total_time: Number,
     ratings: Number,
     cook_time: Number,
     author: String,
     name: String,
     photo_url: String,
-    instructions: String,
+    instructions: mongoose.Schema.Types.Mixed,
     ingredient_count: String
   },
   { collection: "recipe" }
