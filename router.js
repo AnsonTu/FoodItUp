@@ -1,6 +1,8 @@
 const Authentication = require("./controllers/authentication");
 const passportService = require("./services/passport");
 const UserController = require("./controllers/user");
+const MealController = require("./controllers/meal");
+const UserController = require("./controllers/user");
 const Inventory = require("./controllers/inventory");
 const passport = require("passport");
 
@@ -17,4 +19,8 @@ module.exports = function(app) {
   app.post("/inventory/update", requireAuth, Inventory.updateInventory);
   app.post("/inventory/makemeal", requireAuth, Inventory.makeMeal);
   app.get("/user/stats", UserController.stats);
+  app.post("/meal/new", MealController.new);
+  app.post("/meal/update/recipe", MealController.updateRecipe);
+  app.post("/meal/update/completion", MealController.updateCompletion);
+  app.delete("/meal/delete", MealController.delete);
 };

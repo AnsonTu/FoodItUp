@@ -4,9 +4,10 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const mealSchema = Schema({
   day: Date,
-  recipe: ObjectId,
+  recipeId: ObjectId,
   userId: ObjectId,
-  completion: Boolean
+  completion: Boolean,
+  mealTime: String
 });
 
 module.exports = mongoose.model("meal", mealSchema);
