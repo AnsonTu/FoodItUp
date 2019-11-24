@@ -1,12 +1,53 @@
 const MealModel = require("../models/meal");
 
-exports.save = (req, res, next) => {
-  const meal = req.meal;
-  const newMeal = new MealModel({ meal }, (err, res) => {
+exports.new = (req, res, next) => {
+  const newMeal = new MealModel({
+    day: req.body.day,
+    userId: req.body.userId,
+    recipeId: req.body.recipeId,
+    completion: req.body.completion
+  });
+  newMeal.save(err => {
     if (err) {
-      res.err("Could not add model");
-      return;
+      return next(err);
     }
-    res.send("Success"); // for now
+    res.send("Success");
   });
 };
+
+exports.updateRecipe = (req, res, next) => {
+  MealModel.update(
+    { _id: req.body.id },
+    { recipeId: req.body.recipeId },
+    err => {
+      if (err) {
+        return next(err);
+      }
+      res.send("Success");
+    }
+  );
+};
+
+exports.updateCompletion = (req, res, next) => {
+  MealModel.update(
+    { _id: req.body.id },
+    { completion: req.body.completion },
+    err => {
+      if (err) {
+        return next(err);
+      }
+      res.send("Success");
+    }
+  );
+};
+
+exports.delete = (req, res, next) => {
+  MealModel.deleteOne({ _id: req.body.id }, err => {
+    if (err) {
+      return next(err);
+    }
+    res.send("Success");
+  });
+};
+
+// meal ingredient count
