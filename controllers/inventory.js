@@ -37,10 +37,31 @@ exports.makeMeal = (req, res, next) => {
     }
 
     if (existingUser) {
-      const ingredientCount = req.body.recipe.ingredient_count;
-      //   console.log(ingredientCount);
-      //   Object.keys();
-      //   console.log(ingredientCount);
+      let ingredientCount = req.body.recipe.ingredient_count;
+      ingredientCount = ingredientCount
+        .substring(3, ingredientCount.length - 1)
+        .split(", u'");
+      ingredientCount = ingredientCount.reduce((obj, r) => {
+        const arr = r.split("': ");
+        obj[arr[0]] = Number(arr[1]);
+        return obj;
+      }, {});
+      const inv = existingUser.inventory;
+      for (var i = 0; i < inv.length; i++) {
+        const name = inv[i].ingredientName;
+        if (ingredientCount[name] === undefined) {
+          continue;
+        }
+        inv[i].quantity -= ingredientCount[name];
+        if (inv[i].quantity <= 0) {
+          delete inv[i];
+          inv.splice(i, 1);
+        }
+      }
+      existingUser
+        .save()
+        .then(() => res.json(existingUser.inventory))
+        .catch(err => res.status(400).json("Error: " + err));
     }
   });
 };
