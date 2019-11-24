@@ -1,5 +1,3 @@
-const Inventory = require("../models/inventory");
-
 exports.getInventory = (req, res, next) => {
   User.findOne({ userId: req.userId }, function(err, existingUser) {
     if (err) {

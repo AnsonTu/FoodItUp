@@ -26,6 +26,6 @@ module.exports = function(app) {
     requireAuth,
     MealController.updateCompletion
   );
-  app.get("recipe/view", requireAuth, Recipe.getRecipes);
+  app.get("/recipe/view", requireAuth, Recipe.getRecipes);
   app.delete("/meal/delete", MealController.delete);
 };
