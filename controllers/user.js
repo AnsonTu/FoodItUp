@@ -2,7 +2,7 @@ const UserModel = require("../models/user");
 const MealModel = require("../models/meal");
 
 exports.stats = (req, res, next) => {
-  MealModel.find({ userId: req.body.userid }, (err, meals) => {
+  MealModel.find({ userId: req.user._id }, (err, meals) => {
     if (err) return next(err);
     const totalCompleted =
       meals.reduce((acc, curr) => {

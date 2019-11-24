@@ -3,9 +3,10 @@ const MealModel = require("../models/meal");
 exports.new = (req, res, next) => {
   const newMeal = new MealModel({
     day: req.body.day,
-    userId: req.body.userId,
+    userId: req.user._id,
     recipeId: req.body.recipeId,
-    completion: req.body.completion
+    completion: req.body.completion,
+    mealTime: req.body.mealTime
   });
   newMeal.save(err => {
     if (err) {
