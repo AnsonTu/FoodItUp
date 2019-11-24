@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Recipe = require("../models/recipe");
+const RecipeController = require("../controllers/recipe");
 
 exports.getInventory = (req, res, next) => {
   User.findOne({ _id: req.user._id }, function(err, existingUser) {
@@ -50,7 +51,7 @@ exports.fakeRoute = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    recipe = convert(recipe);
+    recipe = RecipeController.convert(recipe);
     if (recipe) {
       res.json({ recipe });
     }

@@ -7,6 +7,16 @@ const cmp = (a, b) => {
   return b[1] - a[1];
 };
 
+const convert = recipe => {
+  recipe.ingredients = recipe.ingredients
+    .substring(1, recipe.ingredients.length - 1)
+    .split(",");
+  recipe.instructions = recipe.instructions
+    .substring(1, recipe.instructions.length - 1)
+    .split(".,");
+  return recipe;
+};
+
 exports.convert = recipe => {
   recipe.ingredients = recipe.ingredients
     .substring(1, recipe.ingredients.length - 1)
