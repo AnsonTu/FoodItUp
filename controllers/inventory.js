@@ -36,7 +36,10 @@ exports.makeMeal = (req, res, next) => {
     }
 
     if (existingUser) {
-      const ingredientCount = req.recipe.ingredient_count;
+      const ingredientCount = req.body.recipe.ingredient_count;
+      //   console.log(ingredientCount);
+      //   Object.keys();
+      //   console.log(ingredientCount);
     }
   });
 };
@@ -47,12 +50,7 @@ exports.fakeRoute = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    recipe.ingredients = recipe.ingredients
-      .substring(1, recipe.ingredients.length - 1)
-      .split(",");
-    recipe.instructions = recipe.instructions
-      .substring(1, recipe.instructions.length - 1)
-      .split(".,");
+    recipe = convert(recipe);
     if (recipe) {
       res.json({ recipe });
     }

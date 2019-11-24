@@ -7,6 +7,16 @@ const cmp = (a, b) => {
   return b[1] - a[1];
 };
 
+exports.convert = recipe => {
+  recipe.ingredients = recipe.ingredients
+    .substring(1, recipe.ingredients.length - 1)
+    .split(",");
+  recipe.instructions = recipe.instructions
+    .substring(1, recipe.instructions.length - 1)
+    .split(".,");
+  return recipe;
+};
+
 exports.getRecipes = (req, res, next) => {
   User.findOne({ _id: req.user._id }, function(err, existingUser) {
     if (err) {
@@ -40,9 +50,9 @@ exports.getRecipes = (req, res, next) => {
 
         Recipes.find({ index: { $in: recIndex } }, (error, recipes) => {
           if (error) return next(error);
+          recipes.forEach(r => convert(r));
           res.json(recipes);
         });
-        //res.json(countedIngredients);
       }
     );
   });
