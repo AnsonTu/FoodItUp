@@ -18,6 +18,9 @@ module.exports = function(app) {
   app.get("/inventory/view", requireAuth, Inventory.getInventory);
   app.post("/inventory/update", requireAuth, Inventory.updateInventory);
   app.post("/inventory/makemeal", requireAuth, Inventory.makeMeal);
+  //TODO: Remove test route
+  app.get("/inventory/recipes", Inventory.fakeRoute);
+  //
   app.get("/user/stats", requireAuth, UserController.stats);
   app.post("/meal/new", requireAuth, MealController.new);
   app.post("/meal/update/recipe", requireAuth, MealController.updateRecipe);
